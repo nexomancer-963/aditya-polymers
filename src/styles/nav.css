@@ -82,3 +82,7 @@ body{background:#07183d}
 .main-nav{border-radius:0 0 22px 22px}
 @media(max-width:650px){.site-head{border-radius:0 0 19px 19px}.site-head + main > :first-child{margin-top:-19px;padding-top:19px}}
 @media(prefers-reduced-motion:reduce){.site-head{transition:none}}
+
+/* On compact screens the logo image must meet a white surface without a visible tile.
+   Keep the menu control against the opposite edge of the header. */
+@media(max-width:1100px){.site-head{background:#fff}.head-actions{margin-left:auto}.head-inner{justify-content:space-between}.logo-link{min-width:0}.logo-link img{display:block}}

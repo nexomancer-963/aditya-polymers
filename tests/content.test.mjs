@@ -43,3 +43,10 @@ test('internal page links resolve and runtime assets exist', async () => {
     await access(path.join(root, 'public/og', `${image}.png`));
   }
 });
+
+test('public pages do not expose editorial section counters', () => {
+  const markup = [...Object.values(pages).map(page => page.html), ...Object.values(shell)].join('');
+  assert.doesNotMatch(markup, /class="(?:eyebrow|section-no|process-index|visual-record-kicker|visual-record-number|menu-index)"/);
+  assert.doesNotMatch(markup, />\s*\d{2}\s*\/\s*[A-Za-z]/);
+  assert.doesNotMatch(markup, /<span class="overline">\s*\d{2}\s*<\/span>/);
+});

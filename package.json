@@ -1,0 +1,27 @@
+{
+  "name": "aditya-polymers-demo",
+  "version": "0.1.0",
+  "private": true,
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "typecheck": "tsc --noEmit --incremental false",
+    "test": "node --test --experimental-test-isolation=none tests/content.test.mjs",
+    "test:seo": "node tests/seo-qa.mjs"
+  },
+  "dependencies": {
+    "next": "16.4.2",
+    "react": "19.2.8",
+    "react-dom": "19.2.8"
+  },
+  "devDependencies": {
+    "@types/node": "24.10.1",
+    "@types/react": "19.2.7",
+    "@types/react-dom": "19.2.3",
+    "typescript": "6.0.3"
+  }
+}

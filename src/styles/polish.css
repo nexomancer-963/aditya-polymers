@@ -1,0 +1,36 @@
+/* Final surface pass after the reference CSS. Keep changes measured against screenshots. */
+html { scroll-padding-top: 112px; }
+body { -webkit-font-smoothing: auto; text-rendering: optimizeLegibility; }
+.hero h1 { font-weight: 650; letter-spacing: -.065em; line-height: .98; }
+.page-hero h1, .section-title h2, .section-heading h2 { font-weight: 620; letter-spacing: -.055em; }
+.dialog-head h2, .menu-feature h2, .company-panel h2, .enquiry h2 { font-weight: 620; letter-spacing: -.055em; }
+.site-head .main-nav > a, .site-head .nav-trigger { font-weight: 750; }
+.site-head, .product-menu, .enquiry-dialog, .visual-record, .company-panel { isolation: isolate; }
+.site-head { overflow: visible; will-change: auto; }
+.product-menu, .enquiry-dialog { background-clip: padding-box; }
+.material-figure { position: relative; display: block; margin: 0; overflow: hidden; border: 1px solid rgba(184, 207, 245, .45); border-radius: 38px; background: var(--deep); box-shadow: inset 0 1px rgba(255,255,255,.12), 0 25px 50px rgba(6,25,65,.16); }
+.material-figure img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; filter: none; }
+.material-figure[data-material="wood-working-adhesives"] img { object-position: 75% center; }
+.material-figure::after { content: ""; position: absolute; inset: 52% 0 0; background: linear-gradient(transparent, rgba(3, 14, 37, .64)); pointer-events: none; }
+.material-figure figcaption { position: absolute; z-index: 1; left: 26px; right: 26px; bottom: 23px; display: flex; justify-content: space-between; gap: 12px; color: white; font: 700 11px "Cascadia Code", Consolas, monospace; letter-spacing: .13em; text-transform: uppercase; }
+.material-figure figcaption span { position: static; inset: auto; margin-left: auto; font-size: 18px; line-height: .8; }
+.material-feature { display: block; margin: 0; border-radius: 34px; background: #0b2050; box-shadow: inset 0 1px rgba(255,255,255,.2), 0 22px 46px rgba(6,25,65,.16); }
+.material-feature img { width: 100%; height: 100%; object-fit: cover; filter: none; }
+.split-feature.reverse > :first-child { order: 2; }
+@media(max-width:650px) { .material-figure { border-radius: 28px; } .material-figure figcaption { left: 19px; right: 19px; bottom: 18px; } }
+@media(max-width:650px) { .material-feature { border-radius: 28px; } .split-feature.reverse > :first-child { order: 0; } }
+.hero-index { align-self: center; padding: 18px 0 6px 38px; border-left: 1px solid rgba(169,201,255,.5); color: #f7f9fd; }
+.hero-index-heading { display: block; margin-bottom: 25px; color: var(--ice); font: 700 11px "Cascadia Code", Consolas, monospace; text-transform: uppercase; letter-spacing: .16em; }
+.hero-index dl { margin: 0; }
+.hero-index dl > div { display: grid; grid-template-columns: minmax(110px,.45fr) 1fr; gap: 25px; padding: 21px 0; border-top: 1px solid rgba(169,201,255,.27); }
+.hero-index dt { display: flex; gap: 11px; color: #b9cdf0; font-size: 13px; }
+.hero-index dt span { color: var(--ice); font: 700 11px "Cascadia Code", Consolas, monospace; }
+.hero-index dd { margin: 0; font-size: clamp(17px,1.6vw,23px); line-height: 1.33; font-weight: 540; letter-spacing: -.02em; }
+@media(max-width:1100px) { .hero-index { padding-left: 0; border-left: 0; border-top: 1px solid rgba(169,201,255,.5); } }
+@media(max-width:650px) { .hero-index dl > div { grid-template-columns: 1fr; gap: 8px; padding: 16px 0; } }
+button:disabled { cursor: progress; opacity: .7; }
+.form-status { min-height: 1.4em; }
+.error-page { min-height: 70vh; width: min(100% - 40px, 900px); margin: auto; padding: 18vh 0 12vh; }
+.error-page h1 { font-size: clamp(48px, 8vw, 96px); line-height: 1.04; letter-spacing: -.055em; font-weight: 550; }
+.error-page p:not(.eyebrow) { color: var(--slate); }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }

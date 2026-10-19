@@ -15,6 +15,7 @@ import '../styles/scrollbars.css';
 import '../styles/phase8-art.css';
 import '../styles/parallax.css';
 import '../styles/family-progress.css';
+import '../styles/mobile-rails.css';
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteOrigin),

@@ -124,8 +124,12 @@
     updateFamilyProgressFrame=()=>{
       const maxScroll=tabRail.scrollWidth-tabRail.clientWidth;
       const hasOverflow=maxScroll>1;
-      familyProgress.hidden=!hasOverflow;
-      if(hasOverflow)familyProgressFill.style.setProperty('--family-progress',String(.16+.84*Math.max(0,Math.min(1,tabRail.scrollLeft/maxScroll))));
+      const compact=matchMedia('(max-width: 650px)').matches;
+      familyProgress.hidden=!hasOverflow&&!compact;
+      if(compact){
+        const selectedIndex=Math.max(0,tabs.findIndex(tab=>tab.getAttribute('aria-selected')==='true'));
+        familyProgressFill.style.setProperty('--family-progress',String((selectedIndex+1)/tabs.length));
+      }else if(hasOverflow)familyProgressFill.style.setProperty('--family-progress',String(.16+.84*Math.max(0,Math.min(1,tabRail.scrollLeft/maxScroll))));
     };
     tabRail.addEventListener('scroll',scheduleVisualFrame,{passive:true});
     window.addEventListener('resize',scheduleVisualFrame,{passive:true});
@@ -160,6 +164,54 @@
       });
     });
   }
+
+  document.querySelectorAll('.phase7-application-rail').forEach(rail=>{
+    const cards=[...rail.querySelectorAll(':scope > .phase7-application-card')];
+    if(cards.length<2)return;
+    const controls=document.createElement('div');
+    controls.className='phase7-rail-controls';
+    controls.setAttribute('role','group');
+    controls.setAttribute('aria-label','Application carousel controls');
+    const count=document.createElement('span');
+    count.className='phase7-rail-count';
+    count.setAttribute('aria-live','polite');
+    const progress=document.createElement('span');
+    progress.className='phase7-rail-progress';
+    progress.setAttribute('aria-hidden','true');
+    const fill=document.createElement('span');
+    fill.className='phase7-rail-progress-fill';
+    progress.append(fill);
+    const previous=document.createElement('button');
+    previous.type='button';
+    previous.className='phase7-rail-button';
+    previous.setAttribute('aria-label','Previous application');
+    previous.textContent='\u2190';
+    const next=document.createElement('button');
+    next.type='button';
+    next.className='phase7-rail-button';
+    next.setAttribute('aria-label','Next application');
+    next.textContent='\u2192';
+    controls.append(count,progress,previous,next);
+    rail.insertAdjacentElement('afterend',controls);
+    let active=0;
+    const mobile=matchMedia('(max-width: 650px)');
+    const update=()=>{
+      controls.hidden=!mobile.matches;
+      if(!mobile.matches)return;
+      const edge=rail.getBoundingClientRect().left;
+      active=cards.reduce((best,card,index)=>Math.abs(card.getBoundingClientRect().left-edge)<Math.abs(cards[best].getBoundingClientRect().left-edge)?index:best,0);
+      count.textContent=`${String(active+1).padStart(2,'0')} / ${String(cards.length).padStart(2,'0')}`;
+      fill.style.setProperty('--application-progress',String((active+1)/cards.length));
+      previous.disabled=active===0;
+      next.disabled=active===cards.length-1;
+    };
+    const goTo=index=>rail.scrollTo({left:cards[index].offsetLeft-cards[0].offsetLeft,behavior:reduced?'instant':'smooth'});
+    previous.addEventListener('click',()=>goTo(Math.max(0,active-1)));
+    next.addEventListener('click',()=>goTo(Math.min(cards.length-1,active+1)));
+    rail.addEventListener('scroll',update,{passive:true});
+    window.addEventListener('resize',update,{passive:true});
+    update();
+  });
 
   const revealNodes=[...document.querySelectorAll('[data-reveal]')];
   const bondIllustrations=[...document.querySelectorAll('.bond-path')];

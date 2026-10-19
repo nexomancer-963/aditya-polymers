@@ -1,0 +1,119 @@
+/* Mobile product selection and application cards should show complete items. */
+@media (max-width: 650px) {
+  /* Keep section titles clear of the persistent mobile navigation. */
+  .site-head.nav-hidden { transform: none; }
+  section[id], main [id] { scroll-margin-top: 98px !important; }
+
+  .products .family-tabs {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 7px;
+    overflow: visible;
+    padding: 0;
+    margin: 0 0 12px;
+  }
+
+  .products .family-tab {
+    min-width: 0;
+    min-height: 52px;
+    padding: 8px 5px;
+    white-space: normal;
+    text-align: center;
+    font-size: clamp(10px, 2.7vw, 12px);
+    line-height: 1.2;
+  }
+
+  .products .family-progress {
+    height: 3px;
+    margin: 0 0 22px;
+  }
+
+  .phase7-product-journey .phase7-application-rail {
+    grid-auto-columns: calc(100% - 4px);
+    gap: 18px;
+    padding: 4px 2px 12px;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .phase7-product-journey .phase7-application-rail::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    height: 0;
+  }
+
+  .phase7-product-journey .phase7-application-card {
+    min-height: 0;
+  }
+
+  .phase7-product-journey .phase7-application-card img {
+    height: clamp(190px, 52vw, 220px);
+  }
+
+  .phase7-product-journey .phase7-application-card-copy {
+    min-height: 180px;
+    padding: 18px 20px 20px;
+  }
+
+  .phase7-product-journey .phase7-application-title {
+    min-height: 0;
+  }
+
+  .phase7-rail-controls:not([hidden]) {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    margin-top: 9px;
+  }
+
+  .phase7-rail-count {
+    flex: none;
+    color: #0b2c69;
+    font: 700 11px/1.4 'Cascadia Code', Consolas, monospace;
+    letter-spacing: .06em;
+  }
+
+  .phase7-rail-progress {
+    position: relative;
+    flex: 1;
+    height: 3px;
+    overflow: hidden;
+    border-radius: 99px;
+    background: #c7d9f2;
+  }
+
+  .phase7-rail-progress-fill {
+    position: absolute;
+    inset: 0;
+    background: #3469c9;
+    transform: scaleX(var(--application-progress, 0));
+    transform-origin: left center;
+    transition: transform .24s ease;
+  }
+
+  .phase7-rail-button {
+    display: grid;
+    flex: none;
+    place-items: center;
+    width: 39px;
+    height: 39px;
+    padding: 0;
+    border: 1px solid #97b5e2;
+    border-radius: 50%;
+    background: #fff;
+    color: #113d87;
+    font-size: 20px;
+    line-height: 1;
+  }
+
+  .phase7-rail-button:disabled {
+    opacity: .35;
+    cursor: default;
+  }
+}
+
+.phase7-rail-controls[hidden] { display: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .phase7-rail-progress-fill { transition: none; }
+}

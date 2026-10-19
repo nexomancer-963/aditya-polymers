@@ -1,10 +1,14 @@
-export const approvedSiteOrigin = 'https://www.m.adityapolymers.com';
 const configured = process.env.NEXT_PUBLIC_SITE_URL?.trim();
-export const siteOrigin = configured ? configured.replace(/\/$/, '') : approvedSiteOrigin;
+const vercelHost = process.env.VERCEL_URL?.trim();
+export const siteOrigin = configured
+  ? new URL(configured).origin
+  : vercelHost ? `https://${vercelHost}` : 'http://localhost:3000';
 export const isIndexingEnabled = process.env.NEXT_PUBLIC_ALLOW_INDEXING === 'true'
   && process.env.NODE_ENV === 'production'
-  && siteOrigin === approvedSiteOrigin;
+  && process.env.VERCEL_ENV !== 'preview'
+  && Boolean(configured)
+  && siteOrigin.startsWith('https://');
 
 export function absoluteUrl(path: string) {
-  return `${siteOrigin}${path === '/' ? '' : path}`;
+  return `${siteOrigin}${path}`;
 }

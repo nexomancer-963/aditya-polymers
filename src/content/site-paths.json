@@ -1,12 +1,12 @@
 {
-  "/": "/index.html",
+  "/": "/",
   "/products": "/aditya-polymers-products.html",
   "/products/synthetic-adhesives": "/products/synthetic-adhesives",
   "/products/starch-based-gums": "/products/starch-based-gums",
+  "/products/starch-based-gums/cl-150": "/products/starch-based-gums/cl-150",
+  "/products/starch-based-gums/dexo-series": "/products/starch-based-gums/dexo-series",
   "/products/wood-working-adhesives": "/products/wood-working-adhesives",
   "/applications": "/applications",
-  "/capabilities": "/capabilities",
   "/about": "/about-aditya-polymers.html",
-  "/locations": "/locations-we-serve.html",
   "/contact": "/contact.html"
 }

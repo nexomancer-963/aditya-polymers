@@ -1,0 +1,14 @@
+/* Visible, brand-colored scrollbars on documents, dialogs and horizontal rails. */
+html, body, .enquiry-dialog, .dialog-scroll, .product-tabs, .table-wrap {
+  scrollbar-width: thin;
+  scrollbar-color: #628ed2 #e5edfa;
+}
+::-webkit-scrollbar { width: 10px; height: 9px; }
+::-webkit-scrollbar-track { background: #e5edfa; border-radius: 999px; }
+::-webkit-scrollbar-thumb { background: #628ed2; border: 2px solid #e5edfa; border-radius: 999px; }
+::-webkit-scrollbar-thumb:hover { background: #2254a3; }
+::-webkit-scrollbar-corner { background: #e5edfa; }
+@media (max-width: 650px) {
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-thumb { border-width: 1px; }
+}

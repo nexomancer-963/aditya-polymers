@@ -1,0 +1,42 @@
+/* The family tabs keep native touch and keyboard scrolling without a visible scrollbar. */
+.family-tabs {
+  scrollbar-width: none !important;
+  -ms-overflow-style: none;
+}
+
+.family-tabs::-webkit-scrollbar,
+.family-tabs::-webkit-scrollbar-button {
+  display: none !important;
+  width: 0;
+  height: 0;
+}
+
+.family-progress {
+  position: relative;
+  display: block;
+  height: 2px;
+  margin: -5px 0 20px;
+  overflow: hidden;
+  border-radius: 99px;
+  background: rgba(255, 255, 255, .16);
+}
+
+.family-progress[hidden] {
+  display: none;
+}
+
+.family-progress-fill {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #6f9ce8, #a9c9ff);
+  transform: scaleX(var(--family-progress, 0));
+  transform-origin: left center;
+  transition: transform 140ms linear;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .family-progress-fill {
+    transition: none;
+  }
+}

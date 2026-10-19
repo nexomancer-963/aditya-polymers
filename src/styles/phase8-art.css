@@ -1,0 +1,4 @@
+/* Keep the small hero annotation legible on light licensed photography. */
+.hero-visual::after{
+  background:linear-gradient(180deg,rgba(5,20,49,.65),transparent 32%),linear-gradient(0deg,rgba(7,24,61,.7),transparent 38%),linear-gradient(90deg,rgba(7,24,61,.2),transparent 54%);
+}

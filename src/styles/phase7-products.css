@@ -1,0 +1,321 @@
+/* Phase 7 product journey: local illustrations, direct family choices and application rails. */
+.phase7-product-journey .phase7-family-media {
+  position: relative;
+  min-height: 420px;
+  margin: 0;
+  overflow: hidden;
+  border-left: 1px solid rgba(201, 223, 255, .25);
+  background: #0b2356;
+}
+
+.phase7-product-journey .phase7-family-media img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: none;
+}
+
+.phase7-product-journey .phase7-family-media:after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(0deg, rgba(7, 24, 61, .78), transparent 42%);
+}
+
+.phase7-product-journey .phase7-family-media figcaption {
+  position: absolute;
+  z-index: 1;
+  right: 25px;
+  bottom: 24px;
+  max-width: calc(100% - 50px);
+  padding: 9px 12px;
+  border: 1px solid rgba(255, 255, 255, .32);
+  border-radius: 999px;
+  background: rgba(7, 24, 61, .68);
+  color: #fff;
+  font: 650 10px/1.4 Consolas, monospace;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.phase7-product-journey .phase7-mixing-note {
+  width: 100%;
+  margin: 20px 0 0;
+  padding-top: 15px;
+  border-top: 1px solid #d4e0ef;
+  color: #425975;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.phase7-product-journey .phase7-mixing-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin: 10px 0 0;
+  color: #174b9b;
+  font-weight: 720;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+.phase7-product-journey .phase7-mixing-link svg {
+  width: 15px;
+  height: 15px;
+  flex: none;
+}
+
+.phase7-product-journey .phase7-application-rail {
+  display: grid;
+  grid-auto-columns: minmax(min(290px, 82vw), 1fr);
+  grid-auto-flow: column;
+  gap: 17px;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: thin;
+  scrollbar-color: #8ca9d2 transparent;
+  padding: 3px 2px 15px;
+}
+
+.phase7-product-journey .phase7-application-card {
+  position: relative;
+  display: flex;
+  min-width: 0;
+  min-height: 390px;
+  flex-direction: column;
+  overflow: hidden;
+  scroll-snap-align: start;
+  border: 1px solid #c6d7ed;
+  border-radius: 28px;
+  background: #fff;
+  color: #0a2454;
+  text-decoration: none;
+  box-shadow: 0 14px 32px rgba(8, 40, 96, .09);
+  transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+}
+
+.phase7-product-journey .phase7-application-card:hover,
+.phase7-product-journey .phase7-application-card:focus-visible {
+  transform: translateY(-3px);
+  border-color: #6e94c6;
+  box-shadow: 0 20px 38px rgba(8, 40, 96, .15);
+}
+
+.phase7-product-journey .phase7-application-card:focus-visible {
+  outline: 3px solid #205bb3;
+  outline-offset: 3px;
+}
+
+.phase7-product-journey .phase7-application-card img {
+  display: block;
+  width: 100%;
+  height: 224px;
+  flex: none;
+  object-fit: cover;
+}
+
+.phase7-product-journey .phase7-application-card-copy {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 20px 22px 21px;
+}
+
+.phase7-product-journey .phase7-application-title {
+  font-size: 23px;
+  font-weight: 720;
+  letter-spacing: -.045em;
+  line-height: 1.18;
+}
+
+.phase7-product-journey .phase7-application-subtitle {
+  margin-top: 7px;
+  color: #4e6384;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.phase7-product-journey .phase7-application-detail {
+  height: 0;
+  margin-top: 0;
+  overflow: hidden;
+  color: #425975;
+  font-size: 13px;
+  line-height: 1.55;
+  opacity: 0;
+  transition: margin .22s ease, opacity .18s ease;
+}
+
+.phase7-product-journey .phase7-application-card:hover .phase7-application-detail,
+.phase7-product-journey .phase7-application-card:focus-visible .phase7-application-detail,
+.phase7-product-journey .phase7-application-card:focus-within .phase7-application-detail {
+  height: auto;
+  margin-top: 10px;
+  opacity: 1;
+}
+
+.phase7-product-journey .phase7-application-link {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+  padding-top: 14px;
+  color: #174b9b;
+  font-size: 12px;
+  font-weight: 720;
+}
+
+.phase7-product-journey .phase7-application-link span {
+  font-size: 17px;
+}
+
+.phase7-product-journey .phase7-application-arrow {
+  width: 17px;
+  height: 17px;
+  flex: none;
+  margin-left: 8px;
+}
+
+.phase7-grade-page .callout .text-link {
+  display: inline-flex;
+  align-items: center;
+  margin-top: 18px;
+  color: #d9e7ff;
+  text-underline-offset: 4px;
+}
+
+.phase7-grade-page .callout .text-link svg {
+  width: 16px;
+  height: 16px;
+  margin-left: 7px;
+}
+
+/* Grade details use a single navy, blue and white hierarchy at every width. */
+.phase7-grade-page .table-wrap {
+  max-width: 100%;
+}
+
+.phase7-grade-page .spec-table {
+  width: 100%;
+  table-layout: fixed;
+  color: #0b2356;
+}
+
+.phase7-grade-page .spec-table th,
+.phase7-grade-page .spec-table td {
+  box-sizing: border-box;
+  overflow-wrap: anywhere;
+  hyphens: auto;
+  border-color: #cbd9ec;
+}
+
+.phase7-grade-page .spec-table thead th {
+  width: 30%;
+  background: #0b2356;
+  color: #fff;
+  font: 700 12px/1.4 'Segoe UI', Arial, sans-serif;
+  letter-spacing: .015em;
+  text-transform: none;
+}
+
+.phase7-grade-page .spec-table thead th + th {
+  width: 70%;
+  border-left: 1px solid rgba(255, 255, 255, .2);
+}
+
+.phase7-grade-page .spec-table tbody th[scope="row"] {
+  width: 30%;
+  background: #e5eef9;
+  color: #0b2356;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.phase7-grade-page .spec-table tbody td {
+  width: 70%;
+  background: #fff;
+  color: #243c61;
+}
+
+@media (max-width: 520px) {
+  .phase7-grade-page .spec-table th,
+  .phase7-grade-page .spec-table td {
+    padding: 13px 12px;
+  }
+
+  .phase7-grade-page .spec-table thead th {
+    font-size: 11px;
+    letter-spacing: 0;
+  }
+
+  .phase7-grade-page .spec-table thead th:first-child,
+  .phase7-grade-page .spec-table tbody th[scope="row"] {
+    width: 40%;
+  }
+
+  .phase7-grade-page .spec-table thead th + th,
+  .phase7-grade-page .spec-table tbody td {
+    width: 60%;
+  }
+
+  .phase7-grade-page .spec-table tbody th[scope="row"] {
+    font-size: 14px;
+  }
+}
+
+@media (min-width: 1100px) {
+  .phase7-product-journey .phase7-application-rail {
+    grid-auto-columns: minmax(0, 1fr);
+    grid-auto-flow: column;
+    overflow-x: auto;
+  }
+}
+
+@media (max-width: 650px) {
+  .phase7-product-journey .phase7-family-media {
+    min-height: 310px;
+    border-top: 1px solid rgba(201, 223, 255, .25);
+    border-left: 0;
+  }
+
+  .phase7-product-journey .phase7-family-media figcaption {
+    right: 17px;
+    bottom: 17px;
+  }
+
+  .phase7-product-journey .phase7-application-card {
+    min-height: 370px;
+  }
+
+  .phase7-product-journey .phase7-application-card img {
+    height: 205px;
+  }
+}
+
+@media (hover: none), (prefers-reduced-motion: reduce) {
+  .phase7-product-journey .phase7-application-detail {
+    height: auto;
+    margin-top: 10px;
+    opacity: 1;
+  }
+
+  .phase7-product-journey .phase7-application-card,
+  .phase7-product-journey .phase7-family-media img,
+  .phase7-product-journey .phase7-application-detail {
+    transition: none;
+  }
+
+  .phase7-product-journey .phase7-application-card:hover,
+  .phase7-product-journey .phase7-application-card:focus-visible {
+    transform: none;
+  }
+}

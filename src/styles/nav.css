@@ -86,3 +86,38 @@ body{background:#07183d}
 /* On compact screens the logo image must meet a white surface without a visible tile.
    Keep the menu control against the opposite edge of the header. */
 @media(max-width:1100px){.site-head{background:#fff}.head-actions{margin-left:auto}.head-inner{justify-content:space-between}.logo-link{min-width:0}.logo-link img{display:block}}
+
+/* The quick actions live beside the header in the DOM, so the header drawer
+   cannot carry this fixed control off screen during downward scrolling. */
+.mobile-actions{display:none}
+@media(max-width:850px){
+  .mobile-actions{position:fixed;z-index:70;left:50%;bottom:max(12px,env(safe-area-inset-bottom));transform:translateX(-50%);display:flex;align-items:center;gap:5px;width:min(330px,calc(100% - 32px));padding:5px;border:1px solid rgba(7,24,61,.12);border-radius:999px;background:rgba(255,255,255,.96);box-shadow:0 12px 38px rgba(7,24,61,.2);backdrop-filter:blur(16px);transition:opacity .2s,transform .2s}
+  .mobile-actions a{display:flex;flex:1;align-items:center;justify-content:center;min-height:46px;padding:0 17px;border-radius:999px;color:var(--corporate);font-size:12px;font-weight:800;text-decoration:none}
+  .mobile-actions a:last-child{background:var(--action);color:#fff}
+  .mobile-actions a:focus-visible{outline-offset:1px}
+  .mobile-actions a:active{transform:scale(.98)}
+  body.modal-open .mobile-actions,body.footer-near .mobile-actions,body:has(.main-nav.open) .mobile-actions{opacity:0;pointer-events:none;transform:translate(-50%,130%)}
+  main{padding-bottom:76px}
+}
+@media(max-width:400px){.mobile-actions{width:calc(100% - 28px)}}
+@media(prefers-reduced-motion:reduce){.mobile-actions{transition:none}}
+
+/* Expanded mobile navigation stays a continuous white sheet. */
+@media(max-width:1100px){
+  .site-head.menu-open{background:#fff;border-radius:0;box-shadow:0 1px 0 #d9e3f2}
+  .site-head.menu-open .main-nav{top:calc(100% - 1px);background:#fff;border-top:1px solid #d9e3f2;border-bottom:1px solid #d9e3f2;border-radius:0;box-shadow:0 24px 36px rgba(7,24,61,.12)}
+  .site-head.menu-open .main-nav>a,.site-head.menu-open .main-nav>.nav-products{animation:mobile-nav-content-in .28s cubic-bezier(.22,.78,.18,1) both}
+  .site-head.menu-open .main-nav>:nth-child(2){animation-delay:35ms}
+  .site-head.menu-open .main-nav>:nth-child(3){animation-delay:70ms}
+  .site-head.menu-open .main-nav>:nth-child(4){animation-delay:105ms}
+  .site-head.menu-open .main-nav>:nth-child(n+5){animation-delay:140ms}
+}
+@keyframes mobile-nav-content-in{from{transform:translateY(8px)}to{transform:none}}
+@media(prefers-reduced-motion:reduce){.site-head.menu-open .main-nav>a,.site-head.menu-open .main-nav>.nav-products{animation:none}}
+@media(max-width:850px){html:not(.js) .mobile-actions{display:none}body.hero-near .mobile-actions{opacity:0;pointer-events:none;transform:translate(-50%,130%)}}
+
+/* Phase 7 navigation */
+.product-menu{width:min(1080px,calc(100vw - 64px));grid-template-columns:minmax(0,.96fr) minmax(0,1.04fr);gap:12px}
+.product-menu .menu-group{grid-template-rows:auto repeat(3,1fr);grid-template-columns:1fr;gap:9px;padding:20px 12px 14px}
+@media(max-width:1100px){.product-menu{grid-template-columns:1fr;width:100%;max-width:none}.product-menu .menu-group{grid-template-columns:1fr;grid-template-rows:auto repeat(3,1fr);padding:11px 9px}}
+@media(max-width:650px){.product-menu{grid-template-columns:1fr}.product-menu .menu-group{gap:7px}}

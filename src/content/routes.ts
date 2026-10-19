@@ -3,7 +3,7 @@ import sitePaths from './site-paths.json';
 
 export type SiteRoute = keyof typeof pages;
 export const routes = Object.keys(pages) as SiteRoute[];
-const paths = sitePaths as Record<SiteRoute, string>;
+const paths = sitePaths satisfies Record<SiteRoute, string>;
 const byPublicPath = new Map(Object.entries(paths).map(([route, publicPath]) => [publicPath, route as SiteRoute]));
 
 export function publicPath(route: SiteRoute) {

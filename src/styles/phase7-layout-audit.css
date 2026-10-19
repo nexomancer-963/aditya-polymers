@@ -1,0 +1,31 @@
+/* Layout correction. Keep the first hero close to the navigation. */
+.hero-grid{min-height:0;padding-top:32px}
+.hero{overflow:visible}
+.hero-grid > *, .hero-content, .page-hero .hero-layout > *, .section-heading > *, .split-feature > *, .contact-grid > *{min-width:0}
+.hero h1, .page-hero h1, .section-heading h2, .section-title h2, .callout h2{max-width:100%;overflow-wrap:break-word}
+.btn{white-space:normal;overflow:visible;text-align:center;line-height:1.3;padding-block:12px}
+.surface-card:not(.has-image) h3{min-height:2.15em;overflow-wrap:break-word}
+.card-grid .technical-record{justify-content:flex-start;gap:20px}
+.card-grid .technical-record .record-content{display:flex;flex:1;flex-direction:column;align-items:flex-start;min-width:0}
+.card-grid .technical-record .record-content h3{min-height:2.2em;margin:0 0 10px;overflow-wrap:break-word}
+.card-grid .technical-record .record-content p{margin:0 0 20px;max-width:none}
+.card-grid .technical-record .record-content .text-link{margin-top:auto}
+.phase7-application-card .phase7-application-title{min-height:2.35em;overflow-wrap:break-word}
+.family-tabs{scroll-padding-inline:8px}
+html{scroll-padding-top:128px}
+section[id],main [id]{scroll-margin-top:128px}
+@media(max-width:650px){html{scroll-padding-top:98px}section[id],main [id]{scroll-margin-top:98px}}
+@media(max-width:1100px){.hero-grid{padding-top:36px}}
+@media(max-width:650px){.hero-grid{padding-top:26px}}
+
+/* Add ?layout-audit=1 to see container boundaries without changing geometry. */
+html.layout-audit .site-head{outline:3px solid #f43f5e;outline-offset:-3px}
+html.layout-audit main{outline:3px solid #f97316;outline-offset:-3px}
+html.layout-audit main > section{outline:3px solid #eab308;outline-offset:-3px}
+html.layout-audit main > section:nth-of-type(even){outline-color:#22c55e}
+html.layout-audit .wrap{outline:2px dashed #06b6d4;outline-offset:-2px}
+html.layout-audit .hero-grid,html.layout-audit .hero-layout,html.layout-audit .section-heading,html.layout-audit .section-title{outline:2px solid #a855f7;outline-offset:-2px}
+html.layout-audit .hero-content,html.layout-audit .hero-visual,html.layout-audit .card-grid > *,html.layout-audit .application-grid > *,html.layout-audit .contact-grid > *{outline:2px solid #ec4899;outline-offset:-2px}
+html.layout-audit .product-menu{outline:3px solid #14b8a6;outline-offset:-3px}
+html.layout-audit .layout-overflow{outline:4px solid #dc2626!important;outline-offset:-4px}
+html.layout-audit [data-reveal],html.layout-audit .reveal-node,html.layout-audit .hero-content>[data-intro]{opacity:1!important;transform:none!important;animation:none!important;transition:none!important}

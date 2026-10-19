@@ -1,0 +1,53 @@
+@font-face {
+  font-family: Manrope;
+  src: url('/fonts/Manrope-variable.woff2') format('woff2');
+  font-style: normal;
+  font-weight: 200 800;
+  font-display: swap;
+}
+
+:root { font-family: Manrope, 'Segoe UI', sans-serif; font-synthesis: none; }
+body { font-weight: 470; -webkit-font-smoothing: auto; text-rendering: optimizeLegibility; }
+
+/* Use the font's real outlines and stronger ink on the pale footer surface. */
+.site-footer .footer-intro p { font-weight: 600; }
+.site-footer .footer-brand p,
+.site-footer .footer-office address { color: #405474; font-weight: 520; }
+.site-footer .footer-col a { font-weight: 530; }
+.site-footer .footer-bottom { color: #405474; font-weight: 600; }
+.menu-feature-link { font-weight: 800 !important; }
+.spec-table td:first-child { font-weight: 800; }
+
+.hero h1 { letter-spacing: -.045em; }
+.page-hero h1 { letter-spacing: -.045em; line-height: .99; }
+.section-title h2, .section-heading h2, .editorial h2, .feature-copy h2,
+.company-panel h2, .enquiry h2, .callout h2, .dialog-head h2 {
+  letter-spacing: -.035em;
+}
+
+.section-context {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0 0 18px;
+  color: #2254a3;
+  font: 650 12px/1.5 'Cascadia Code', Consolas, monospace;
+  letter-spacing: .11em;
+  text-transform: uppercase;
+}
+.section-context::before {
+  content: '';
+  flex: 0 0 28px;
+  height: 1px;
+  background: currentColor;
+  opacity: .72;
+}
+.hero .section-context, .page-hero .section-context, .section.dark .section-context,
+.products .section-context, .company-panel .section-context {
+  color: #bbd5ff;
+}
+
+@media (max-width: 650px) {
+  .section-context { font-size: 11px; letter-spacing: .075em; gap: 9px; }
+  .section-context::before { flex-basis: 18px; }
+}

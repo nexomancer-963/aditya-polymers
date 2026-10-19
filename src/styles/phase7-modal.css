@@ -1,0 +1,69 @@
+/* Keep the reading progress flush with the dialog's physical right edge. */
+.enquiry-dialog::after {
+  display: none;
+}
+
+/* Keep text contrast stable while the dialog enters. */
+.enquiry-dialog[open] { animation: dialog-in-opaque .32s var(--ease); }
+@keyframes dialog-in-opaque {
+  from { transform: translateY(14px) scale(.98); }
+  to { transform: none; }
+}
+
+.dialog-scroll-rail {
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 6px;
+  border-radius: 0;
+  background: rgba(146, 178, 223, .32);
+}
+
+.dialog-scroll-thumb {
+  border-radius: 0;
+  background: linear-gradient(180deg, #a9c9ff, #1e5bbe);
+}
+
+.enquiry-context-card {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+  margin: 0 0 24px;
+  padding: 17px 19px;
+  border: 1px solid #cbd9ec;
+  border-left: 4px solid #3568cc;
+  border-radius: 16px;
+  background: #edf3fd;
+  color: #0b2356;
+}
+
+.enquiry-context-label {
+  color: #102d63;
+  font: 700 10px/1.4 'Cascadia Code', Consolas, monospace;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+.enquiry-context-value {
+  font-size: 17px;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+}
+
+.enquiry-context-guidance {
+  margin: 0;
+  color: #3e547a;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+@media (max-width: 650px) {
+  .enquiry-context-card { margin-bottom: 20px; padding: 15px 16px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dialog-scroll-rail,
+  .dialog-scroll-thumb {
+    transition: none;
+  }
+}

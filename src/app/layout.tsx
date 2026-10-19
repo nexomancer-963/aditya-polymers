@@ -5,6 +5,16 @@ import '../styles/site.css';
 import '../styles/nav.css';
 import '../styles/material.css';
 import '../styles/polish.css';
+import '../styles/page-transitions.css';
+import '../styles/typography.css';
+import '../styles/phase7-products.css';
+import '../styles/phase7-trust-contact.css';
+import '../styles/phase7-modal.css';
+import '../styles/phase7-layout-audit.css';
+import '../styles/scrollbars.css';
+import '../styles/phase8-art.css';
+import '../styles/parallax.css';
+import '../styles/family-progress.css';
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteOrigin),

@@ -1,7 +1,8 @@
 {
-  "name": "aditya-polymers-demo",
+  "name": "aditya-polymers-website",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "engines": {
     "node": ">=22.0.0"
   },
@@ -10,7 +11,7 @@
     "build": "next build",
     "start": "next start",
     "typecheck": "tsc --noEmit --incremental false",
-    "test": "node --test --experimental-test-isolation=none tests/content.test.mjs",
+    "test": "node --test --experimental-strip-types --experimental-test-isolation=none tests/content.test.mjs tests/route-architecture.test.mjs tests/enquiry-api.test.mjs",
     "test:seo": "node tests/seo-qa.mjs"
   },
   "dependencies": {

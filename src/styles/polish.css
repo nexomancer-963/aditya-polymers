@@ -13,7 +13,7 @@ body { -webkit-font-smoothing: auto; text-rendering: optimizeLegibility; }
 .material-figure[data-material="wood-working-adhesives"] img { object-position: 75% center; }
 .material-figure::after { content: ""; position: absolute; inset: 52% 0 0; background: linear-gradient(transparent, rgba(3, 14, 37, .64)); pointer-events: none; }
 .material-figure figcaption { position: absolute; z-index: 1; left: 26px; right: 26px; bottom: 23px; display: flex; justify-content: space-between; gap: 12px; color: white; font: 700 11px "Cascadia Code", Consolas, monospace; letter-spacing: .13em; text-transform: uppercase; }
-.material-figure figcaption span { position: static; inset: auto; margin-left: auto; font-size: 18px; line-height: .8; }
+.material-figure figcaption { font-family: Manrope, Aptos, 'Segoe UI', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: .045em; text-transform: none; }
 .material-feature { display: block; margin: 0; border-radius: 34px; background: #0b2050; box-shadow: inset 0 1px rgba(255,255,255,.2), 0 22px 46px rgba(6,25,65,.16); }
 .material-feature img { width: 100%; height: 100%; object-fit: cover; filter: none; }
 .split-feature.reverse > :first-child { order: 2; }
@@ -30,8 +30,52 @@ body { -webkit-font-smoothing: auto; text-rendering: optimizeLegibility; }
 @media(max-width:650px) { .hero-index dl > div { grid-template-columns: 1fr; gap: 8px; padding: 16px 0; } }
 button:disabled { cursor: progress; opacity: .7; }
 .form-status { min-height: 1.4em; }
+.form-actions { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; }
+.form-actions > .form-status { grid-column: 1 / -1; max-width: none; color: var(--corporate); font-size: 14px; line-height: 1.5; }
+@media (max-width: 650px) { .form-actions { display: block; } .form-actions > .form-status { margin-top: 14px; } }
+.form-rescue[hidden] { display: none; }
+.form-rescue { margin-top: 22px; padding: 22px; border: 1px solid #bad0f1; border-radius: 22px; background: #eaf1fc; }
+.form-rescue h3 { margin: 0 0 8px; color: var(--corporate); font-size: 21px; line-height: 1.2; }
+.form-rescue p { margin: 0 0 14px; color: var(--slate); font-size: 14px; line-height: 1.55; }
+.form-rescue pre { max-height: 180px; overflow: auto; white-space: pre-wrap; overflow-wrap: anywhere; padding: 14px; border: 1px solid #c8d8ee; border-radius: 14px; background: #fff; color: var(--ink); font: 13px/1.6 Consolas, monospace; user-select: text; }
+.form-rescue .btn { margin-top: 4px; }
+.form-rescue .form-status { margin: 10px 0 0; }
 .error-page { min-height: 70vh; width: min(100% - 40px, 900px); margin: auto; padding: 18vh 0 12vh; }
 .error-page h1 { font-size: clamp(48px, 8vw, 96px); line-height: 1.04; letter-spacing: -.055em; font-weight: 550; }
 .error-page p:not(.eyebrow) { color: var(--slate); }
+.error-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 @media (max-width:1100px) { .site-head { background:#fff; } .head-actions { margin-left:auto; } .head-inner { justify-content:space-between; } .logo-link { min-width:0; } .logo-link img { display:block; } }
+.no-js-nav { display: flex; flex-wrap: wrap; gap: 8px; padding: 13px max(18px, calc((100% - 1480px)/2)); border-bottom: 1px solid #cbd9ed; background: #f4f7fd; }
+.no-js-nav a { display: inline-flex; align-items: center; min-height: 40px; padding: 7px 13px; border: 1px solid #b9cdef; border-radius: 999px; color: #082e79; background: #fff; font-size: 14px; font-weight: 750; text-decoration: none; }
+.no-js-nav a:focus-visible { outline: 3px solid var(--action); outline-offset: 2px; }
+html:not(.js) .hero-content > [data-intro] { opacity: 1; transform: none; animation: none; }
+@media (max-width:1100px) { html:not(.js) .menu-toggle { display: none !important; } }
+
+/* Clear topic labels make the editorial headings understandable on first pass. */
+.section-context { margin: 0 0 14px; color: #315ca5; font: 750 clamp(14px, .9vw, 16px)/1.35 Manrope, Aptos, 'Segoe UI', sans-serif; letter-spacing: .015em; }
+.hero .section-context, .page-hero .section-context, .section.dark .section-context { color: #b9d3ff; }
+.section-title .section-context, .section-heading .section-context { margin-bottom: 14px; }
+.technical-record .record-mark { width: 26px; height: 26px; border: 1px solid #6e9cdd; border-radius: 50%; background: radial-gradient(circle at center, #3269bd 0 3px, transparent 4px); flex: none; }
+.bullet-list li::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--action); margin-right: 16px; vertical-align: 2px; }
+.link-arrow-icon { display: inline-block; width: 17px; height: 17px; flex: none; vertical-align: middle; }
+
+/* A selected route must read as selected even at a quick glance. */
+.site-head .main-nav > a[aria-current="page"],
+.site-head .nav-trigger[aria-current="page"] { color: #fff; background: #0b3b92; border-color: #0b3b92; box-shadow: inset 0 1px rgba(255,255,255,.3), 0 5px 15px rgba(7,41,128,.2); }
+.site-head .main-nav > a[aria-current="page"]:hover,
+.site-head .nav-trigger[aria-current="page"]:hover { color: #fff; background: #164eaa; }
+@media (max-width:1100px) {
+  .site-head .main-nav > a[aria-current="page"], .site-head .nav-trigger[aria-current="page"] { justify-content: flex-start; }
+}
+.site-head .main-nav > a, .site-head .nav-trigger { font-size: 12px; letter-spacing: .04em; }
+.site-head .head-cta { font-size: 12px !important; }
+.section-title p, .section-heading p, .technical-record p, .surface-card p, .feature-copy p, .process p, .bullet-list li, .callout p, .spec-table td { font-size: clamp(15px, 1vw, 17px); line-height: 1.65; }
+.site-footer .footer-col a, .site-footer .footer-brand p { font-size: 15px; }
+.site-footer .footer-col h3 { font-size: 12px; }
+.site-footer .footer-bottom { font-size: 12px; line-height: 1.5; }
+.product-menu .menu-tile small, .product-menu .menu-route small { font-size: 12px; }
+.product-menu .menu-route { grid-template-columns: minmax(0, 1fr) 18px; gap: 14px; }
+.product-menu .menu-route .link-arrow-icon, .product-menu .menu-tile .link-arrow-icon { color: var(--action); }
+.product-menu .menu-tile strong, .product-menu .menu-route strong { font-size: 15px; }
+@media (max-width:1100px) { .site-head .main-nav > a, .site-head .nav-trigger { font-size: 15px; } }

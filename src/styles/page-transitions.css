@@ -1,0 +1,8 @@
+/* Consistent entrance after document navigation and history restoration. */
+@media (prefers-reduced-motion: no-preference) {
+  main { animation: ap-page-enter 280ms cubic-bezier(.22,.78,.18,1) both; }
+}
+@keyframes ap-page-enter {
+  from { opacity: .92; transform: translateY(8px); }
+  to { opacity: 1; transform: none; }
+}

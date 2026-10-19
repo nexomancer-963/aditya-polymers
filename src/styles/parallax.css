@@ -1,0 +1,17 @@
+/* Restrained movement for framed content photography. */
+html.parallax-ready .parallax-image {
+  transform: translate3d(0, var(--parallax-y, 0px), 0) scale(var(--parallax-scale, 1.12));
+  transform-origin: center;
+  backface-visibility: hidden;
+}
+
+html.parallax-ready .application-card:hover .parallax-image,
+html.parallax-ready .hero-visual:hover .parallax-image {
+  --parallax-scale: 1.14;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.parallax-ready .parallax-image {
+    transform: none;
+  }
+}

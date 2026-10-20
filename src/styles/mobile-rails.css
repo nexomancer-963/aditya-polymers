@@ -1,4 +1,47 @@
-/* Mobile product selection and application cards should show complete items. */
+/* Application cards have stable content and room for their shadows. */
+.phase7-product-journey .phase7-application-rail {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+  grid-auto-columns: auto;
+  grid-auto-flow: row;
+  gap: 20px;
+  overflow: visible;
+  scroll-snap-type: none;
+  padding: 4px 3px 38px;
+}
+
+.phase7-product-journey .phase7-application-card { scroll-snap-align: none; }
+.phase7-rail-hint { display: none; }
+@media (min-width: 651px) {
+  .phase7-product-journey .phase7-application-card:hover,
+  .phase7-product-journey .phase7-application-card:focus-visible {
+    z-index: 3;
+    transform: translateY(-4px) scale(1.018);
+  }
+}
+.phase7-product-journey .phase7-application-detail {
+  height: auto;
+  margin-top: 10px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .2s ease;
+}
+
+.phase7-product-journey .phase7-application-card:hover .phase7-application-detail,
+.phase7-product-journey .phase7-application-card:focus-visible .phase7-application-detail,
+.phase7-product-journey .phase7-application-card:focus-within .phase7-application-detail {
+  opacity: 1;
+  visibility: visible;
+  transition-delay: 0s;
+}
+
+@media (hover: none) {
+  .phase7-product-journey .phase7-application-detail {
+    opacity: 1;
+    visibility: visible;
+    transition: none;
+  }
+}
+
 @media (max-width: 650px) {
   /* Keep section titles clear of the persistent mobile navigation. */
   .site-head.nav-hidden { transform: none; }
@@ -28,10 +71,16 @@
     margin: 0 0 22px;
   }
 
+  .phase7-product-journey > .section:has(.phase7-application-rail) {
+    padding-top: 42px;
+  }
+
   .phase7-product-journey .phase7-application-rail {
-    grid-auto-columns: calc(100% - 4px);
-    gap: 18px;
-    padding: 4px 2px 12px;
+    position: relative;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
+    padding: 4px 3px 35px;
+    touch-action: pan-y;
     scrollbar-width: none;
     -ms-overflow-style: none;
   }
@@ -44,6 +93,30 @@
 
   .phase7-product-journey .phase7-application-card {
     min-height: 0;
+    transform: none;
+  }
+
+  .phase7-product-journey .phase7-application-rail.is-carousel > .phase7-application-card {
+    grid-area: 1 / 1;
+    width: 100%;
+    transition: opacity .28s ease, visibility 0s .28s;
+  }
+
+  .phase7-product-journey .phase7-application-rail.is-carousel > .phase7-application-card:not([data-active="true"]) {
+    z-index: 1;
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+    transform: none;
+  }
+
+  .phase7-product-journey .phase7-application-rail.is-carousel > .phase7-application-card[data-active="true"] {
+    z-index: 2;
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+    transform: none;
+    transition-delay: 0s;
   }
 
   .phase7-product-journey .phase7-application-card img {
@@ -59,8 +132,15 @@
     min-height: 0;
   }
 
+  .phase7-product-journey .phase7-application-detail {
+    opacity: 1;
+    visibility: visible;
+    transition: none;
+  }
+
   .phase7-rail-controls:not([hidden]) {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     gap: 13px;
     margin-top: 9px;
@@ -110,10 +190,59 @@
     opacity: .35;
     cursor: default;
   }
+
+  .phase7-rail-hint {
+    position: absolute;
+    z-index: 4;
+    top: 18px;
+    right: 17px;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    max-width: calc(100% - 34px);
+    padding: 7px 10px;
+    border: 1px solid rgba(197, 214, 239, .9);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, .94);
+    box-shadow: 0 8px 18px rgba(6, 31, 76, .16);
+    color: #173b78;
+    font-size: 11px;
+    font-weight: 650;
+    letter-spacing: .01em;
+    pointer-events: none;
+  }
+
+  .phase7-rail-hint-arrow {
+    display: inline-block;
+    color: #245bb6;
+    font-size: 18px;
+    line-height: 1;
+  }
+
+  .phase7-application-rail.is-cued .phase7-rail-hint-arrow {
+    animation: application-swipe-cue .8s ease-in-out 2;
+  }
+
+  .phase7-application-rail.is-cued .phase7-rail-hint[data-direction="right"] .phase7-rail-hint-arrow {
+    animation-name: application-swipe-cue-right;
+  }
+
+  @keyframes application-swipe-cue {
+    50% { transform: translateX(-8px); }
+  }
+
+  @keyframes application-swipe-cue-right {
+    50% { transform: translateX(8px); }
+  }
 }
 
 .phase7-rail-controls[hidden] { display: none; }
 
 @media (prefers-reduced-motion: reduce) {
   .phase7-rail-progress-fill { transition: none; }
+  .phase7-application-rail.is-cued .phase7-rail-hint-arrow { animation: none; }
+  .phase7-product-journey .phase7-application-rail.is-carousel > .phase7-application-card { transition: none; }
+  .phase7-product-journey .phase7-application-detail { transition: none; }
+  .phase7-product-journey .phase7-application-card:hover,
+  .phase7-product-journey .phase7-application-card:focus-visible { transform: none; }
 }

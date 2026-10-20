@@ -191,26 +191,77 @@
     next.className='phase7-rail-button';
     next.setAttribute('aria-label','Next application');
     next.textContent='\u2192';
+    const hint=document.createElement('span');
+    hint.className='phase7-rail-hint';
+    hint.setAttribute('aria-hidden','true');
+    const hintText=document.createElement('span');
+    const hintArrow=document.createElement('span');
+    hintArrow.className='phase7-rail-hint-arrow';
+    hintArrow.setAttribute('aria-hidden','true');
+    hint.append(hintText,hintArrow);
     controls.append(count,progress,previous,next);
+    rail.append(hint);
     rail.insertAdjacentElement('afterend',controls);
     let active=0;
+    let gesture=null;
+    let suppressClickUntil=0;
     const mobile=matchMedia('(max-width: 650px)');
     const update=()=>{
-      controls.hidden=!mobile.matches;
-      if(!mobile.matches)return;
-      const edge=rail.getBoundingClientRect().left;
-      active=cards.reduce((best,card,index)=>Math.abs(card.getBoundingClientRect().left-edge)<Math.abs(cards[best].getBoundingClientRect().left-edge)?index:best,0);
+      const compact=mobile.matches;
+      controls.hidden=!compact;
+      rail.classList.toggle('is-carousel',compact);
+      cards.forEach((card,index)=>{
+        if(compact){
+          const selected=index===active;
+          card.dataset.active=String(selected);
+          card.inert=!selected;
+          card.setAttribute('aria-hidden',String(!selected));
+        }else{
+          card.removeAttribute('data-active');
+          card.inert=false;
+          card.removeAttribute('aria-hidden');
+        }
+      });
+      if(!compact)return;
       count.textContent=`${String(active+1).padStart(2,'0')} / ${String(cards.length).padStart(2,'0')}`;
       fill.style.setProperty('--application-progress',String((active+1)/cards.length));
       previous.disabled=active===0;
       next.disabled=active===cards.length-1;
+      hintText.textContent=active===0?'Swipe left for next':active===cards.length-1?'Swipe right to go back':'Swipe left or right';
+      hintArrow.textContent=active===cards.length-1?'\u2192':active===0?'\u2190':'\u2194';
+      hint.dataset.direction=active===cards.length-1?'right':'left';
     };
-    const goTo=index=>rail.scrollTo({left:cards[index].offsetLeft-cards[0].offsetLeft,behavior:reduced?'instant':'smooth'});
-    previous.addEventListener('click',()=>goTo(Math.max(0,active-1)));
-    next.addEventListener('click',()=>goTo(Math.min(cards.length-1,active+1)));
-    rail.addEventListener('scroll',update,{passive:true});
-    window.addEventListener('resize',update,{passive:true});
+    const goTo=index=>{
+      if(!mobile.matches)return;
+      const target=Math.max(0,Math.min(cards.length-1,index));
+      if(target!==active){active=target;update()}
+    };
+    previous.addEventListener('click',()=>goTo(active-1));
+    next.addEventListener('click',()=>goTo(active+1));
+    rail.addEventListener('pointerdown',event=>{
+      if(mobile.matches&&event.button===0)gesture={id:event.pointerId,x:event.clientX,y:event.clientY};
+    },{passive:true});
+    window.addEventListener('pointerup',event=>{
+      if(!gesture||event.pointerId!==gesture.id)return;
+      const dx=event.clientX-gesture.x;
+      const dy=event.clientY-gesture.y;
+      gesture=null;
+      if(Math.abs(dx)<48||Math.abs(dx)<Math.abs(dy)*1.2)return;
+      suppressClickUntil=performance.now()+650;
+      goTo(active+(dx<0?1:-1));
+    },{passive:true});
+    window.addEventListener('pointercancel',()=>{gesture=null},{passive:true});
+    rail.addEventListener('click',event=>{
+      if(performance.now()<suppressClickUntil){event.preventDefault();event.stopPropagation()}
+    },true);
+    mobile.addEventListener('change',update);
     update();
+    if('IntersectionObserver' in window){
+      const cue=new IntersectionObserver(entries=>{
+        if(entries.some(entry=>entry.isIntersecting)){rail.classList.add('is-cued');cue.disconnect()}
+      },{threshold:.5});
+      cue.observe(rail);
+    }else rail.classList.add('is-cued');
   });
 
   const revealNodes=[...document.querySelectorAll('[data-reveal]')];
